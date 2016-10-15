@@ -1,12 +1,86 @@
 //This creates the empty grid
 var grid = [];
 
-//This creates the Node object. It's properties include its coordinates, and whether or not it's alive. It also has a toString() function
+function step() {
+  for (var row in nodeArr) {
+    for(var cell in row) {
+      cell.checkSwap();
+    }
+  }
+  for (var row in nodeArr) {
+    for(var cell in row) {
+      cell.doSwap();
+    }
+  }
+}
+
+// This creates the Node object.
+// Properties:
+//  n, int, row of the node
+//  m, int, column of the node
+//  isAlive, bool, whether or not it's alive
+// Functions:
+//  TODO add other functions
+//  toString() function
 function Node(n, m)
 {
   this.n = n;
   this.m = m;
   this.isAlive = false;
+  this.shouldSwap = false;
+
+  // countLivingNeighbors()
+  // return int number of living neighbors
+  // uses listNeighbors()
+  var countLivingNeighbors = function() {
+    var sum = 0;
+    for (var n in getNeighbors(this.n, this.m)) {
+      if(n != null) {
+        if (n.isAlive) {
+          sum++;
+        }
+      }
+    }
+    return sum;
+  }
+
+  // checkSwap()
+  // check if the nodes should swap
+  // use countLivingNeighbors() to determine wether the square should be
+  // swapped or not.
+  // TODO currently only for square boards
+  var checkSwap = function() {
+
+    // count the number of living neighbors
+    var living = countLivingNeighbors();
+
+    // alive : < 2 die
+    //       : 2-3 alive
+    //       : > 3 die
+    //
+    // dead  : = 3 alive
+    //       : ! 3 dead
+    if(this.isAlive) {
+      if(living < 2 || living > 3) {
+        this.shouldSwap = true;
+      }
+    }
+    else {
+      if (living == 3) {
+        this.shouldSwap = true;
+      }
+    }
+  }
+
+  // doSwap()
+  // swap alive to dead and dead to alive if marked to change.
+  var doSwap = function() {
+    if(this.shouldSwap) {
+      this.isAlive = !this.isAlive;
+      this.shouldSwap = false;
+    }
+  }
+
   this.toString = function()
   {
     return "Node(" + this.n + ", " + this.m + ")";
