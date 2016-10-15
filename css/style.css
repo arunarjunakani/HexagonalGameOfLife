@@ -1,0 +1,32 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Elements */
+
+html, body{
+	height:100%;
+}
+
+h1 {
+	font-family:Arial;
+	font-size:35px;
+	font-weight:100;
+}
+
+/* Classes */
+
+.centerContainer{
+	width: 1000px;
+	margin: auto;
+}
+
+/* ID's */
+
+#header {
+	padding-top: 10px;
+	border-bottom: 1px solid lightgray;
+}
+
+
