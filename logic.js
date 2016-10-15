@@ -1,5 +1,9 @@
 var nodeArr = [];
 
+function genNodeArr(origin) {
+
+}
+
 function next() {
   for (var n in nodeArr) {
     object.process();
@@ -9,9 +13,16 @@ function next() {
   }
 }
 
-function Node() {
+// Node()
+// alive bool
+// swap bool temporary variable to allow swapping
+function Node(x, y) {
+  this.x = x;
+  this.y = y;
   this.alive = false;
-  thi.swap = false;
+  this.swap = false;
+
+  // TODO implemented after the node connection method is created
   function listNeighbors() {
     return [];
   }
