@@ -1,31 +1,20 @@
 var nodeArr = [];
 
-function genNodeArr(origin) {
-
-}
-
-function next() {
+function step() {
   for (var n in nodeArr) {
-    object.process();
+    object.checkSwap();
   }
   for (var n in nodeArr) {
-    object.next();
+    object.doSwap();
   }
 }
 
+// TODO move to Node prototype in src.js
 // Node()
 // alive bool
 // swap bool temporary variable to allow swapping
 function Node(x, y) {
-  this.x = x;
-  this.y = y;
-  this.alive = false;
   this.swap = false;
-
-  // TODO implemented after the node connection method is created
-  function listNeighbors() {
-    return [];
-  }
 
   // countLivingNeighbors()
   // return int number of living neighbors
@@ -40,12 +29,12 @@ function Node(x, y) {
     return sum;
   }
 
-  // process()
-  // "process the node"
+  // checkSwap()
+  // check if the nodes should swap
   // use countLivingNeighbors() to determine wether the square should be
   // swapped or not.
   // TODO currently only for square boards
-  function process() {
+  var checkSwap = function() {
 
     // count the number of living neighbors
     var living = countLivingNeighbors();
@@ -68,9 +57,9 @@ function Node(x, y) {
     }
   }
 
-  // next()
+  // doSwap()
   // swap alive to dead and dead to alive if marked to change.
-  function next() {
+  var doSwap = function() {
     if(this.swap) {
       this.alive = !this.alive;
       this.swap = false;
