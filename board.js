@@ -34,7 +34,9 @@ var side = 30;
 
         drawBoard(ctx, boardWidth, boardHeight);
 
-        document.addEventListener("mousemove", function(eventInfo) {
+        canvas.addEventListener("mousemove", function(eventInfo) {
+			console.log("move");
+			
             var x,
                 y,
                 hexX,

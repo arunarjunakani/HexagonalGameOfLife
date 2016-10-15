@@ -21,16 +21,25 @@ h1 {
 
 /* Classes */
 
-.centerContainer{
+.center_container{
 	width: 1000px;
 	margin: auto;
 }
 
-#header .centerContainer {
+#header .center_container {
 	left:50%;
 	transform: translate(-50%, 0px);
 	position:absolute;
 	bottom:0px;
+}
+
+.button {
+	display:inline-block;
+	border:1px solid gray;
+	background: #f9f9f9;
+	padding:3px;
+	cursor: pointer; 
+	cursor: hand;
 }
 
 /* ID's */
@@ -42,14 +51,13 @@ h1 {
 	border-bottom: 1px solid lightgray;
 }
 
-#bodyContainer {
+#body_container {
 	background: white;
 	min-height: 100%;
 	position: absolute;
 	top:0px;
 	left:50%;
 	transform: translate(-50%, 0px);
-	z-index:-1;
 	border-right:1px solid gray;
 	border-left:1px solid gray;
 }
@@ -66,6 +74,13 @@ h1 {
 
 #window {
 	margin:auto;
-	border:1px solid blue;
 	width: 600px;
 }
+
+#menu_bar {
+	margin-top:5px;
+	width: 600px;
+	background: white;
+}
+
+
