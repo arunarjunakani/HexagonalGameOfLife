@@ -19,7 +19,7 @@ function Node(x, y) {
   // countLivingNeighbors()
   // return int number of living neighbors
   // uses listNeighbors()
-  function countLivingNeighbors() {
+  var countLivingNeighbors = function() {
     var sum = 0;
     for (var n in listNeighbors()) {
       if (n.alive) {
@@ -65,6 +65,4 @@ function Node(x, y) {
       this.swap = false;
     }
   }
-}
-
 }
