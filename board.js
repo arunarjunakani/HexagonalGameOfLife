@@ -1,15 +1,8 @@
-var width = 10;
-var height;
-var side = 30;
+var makeBoard = function(width) {
+  var canvas = document.getElementById('board');
 
-
-
-(function(){
-    var canvas = document.getElementById('board');
-	
-	canvas.addEventListener("mousemove", function() {
-		console.log("move");
-	});
+  var height;
+  var side = 30;
 
     var hexHeight,
         hexRadius,
@@ -18,7 +11,7 @@ var side = 30;
         hexagonAngle = 0.523598776, // 30 degrees in radians
         sideLength = 600/ (width + .5) / Math.sqrt(3),
         boardWidth = width,
-        boardHeight = 10;
+        boardHeight = width;
 
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;
@@ -35,19 +28,18 @@ var side = 30;
         drawBoard(ctx, boardWidth, boardHeight);
 
         canvas.addEventListener("mousemove", function(eventInfo) {
-			console.log("move");
-			
+
             var x,
                 y,
                 hexX,
                 hexY,
                 screenX,
                 screenY;
-			
+
             x = eventInfo.offsetX || eventInfo.layerX;
             y = eventInfo.offsetY || eventInfo.layerY;
 
-            
+
             hexY = Math.floor(y / (hexHeight + sideLength));
             hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
 
@@ -75,16 +67,16 @@ var side = 30;
         for(i = 0; i < width; ++i) {
             for(j = 0; j < height; ++j) {
                 drawHexagon(
-                    ctx, 
-                    i * hexRectangleWidth + ((j % 2) * hexRadius), 
-                    j * (sideLength + hexHeight), 
+                    ctx,
+                    i * hexRectangleWidth + ((j % 2) * hexRadius),
+                    j * (sideLength + hexHeight),
                     false
                 );
             }
         }
     }
 
-    function drawHexagon(canvasContext, x, y, fill) {           
+    function drawHexagon(canvasContext, x, y, fill) {
         var fill = fill || false;
 
         canvasContext.beginPath();
@@ -103,4 +95,7 @@ var side = 30;
         }
     }
 
-})();
+    setSize(width);
+};
+
+makeBoard(20);

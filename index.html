@@ -1,60 +1,60 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="css/style.css"/>
-		
+
 		<title>Modified Game of Life</title>
+		<script src="src.js"></script>
 	</head>
-	
+
 	<body>
-		
+
 		<div id="header">
-		
+
 			<div class="center_container">
 				<h1>Modified Game of Life</h1>
 			</div>
-			
+
 		</div>
-		
+
 		<div class="center_container" id="body_container">
-		
+
 			<div id="body">
-			
+
 				<div id="window">
-					<canvas id="board" width="600" height="600">
-						
-					</canvas>
+					<canvas id="board" width="600" height="600"></canvas>
+
 					<script src="board.js"></script>
-					
+
 					<div id="menu_bar">
-						<div class="button" onClick="step()">
+						<div class="button" onClick="step();">
 							<p>
 								Call step()
 							</p>
 						</div>
-						
-						<div class="button" onClick="setSize(1)">
+
+						<div class="button" onClick="makeBoard(5);">
 							<p>
-								Size 1
+								Size 1 (5)
 							</p>
 						</div>
-						
-						<div class="button" onClick="setSize(2)">
+
+						<div class="button" onClick="makeBoard(20);">
 							<p>
-								Size 2
+								Size 2 (20)
 							</p>
 						</div>
-						
-						<div class="button" onClick="setSize(3)">
+
+						<div class="button" onClick="makeBoard(100);">
 							<p>
-								Size 3
+								Size 3 (100)
 							</p>
 						</div>
 					</div>
 				</div>
-					
+
 			</div>
-		
+
 		</div>
-		
+
 	</body>
 </html>

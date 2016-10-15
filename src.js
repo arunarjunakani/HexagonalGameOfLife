@@ -88,55 +88,21 @@ function Node(n, m)
 }
 
 //This will populate the array with tiles, based on which option the user choose for the size (1 = small, 2 = medium, 3 = large)
-function populateArray(size)
+function setSize(size)
 {
   //This clears the array so this method can be run several times.
   grid = [];
-  if(size == 1)
+  for(var i = 0; i < size; i++)
   {
-    for(var i = 0; i < 5; i++)
+    //The individual rows will be added one at a time
+    var row = [];
+    for(var j = 0; j < size; j++)
     {
-      //The individual rows will be added one at a time
-      var row = [];
-      for(var j = 0; j < 5; j++)
-      {
-        //Adds a new node to the row
-        var hex = new Node(i, j);
-        row.push(hex);
-      }
-      grid.push(row);
+      //Adds a new node to the row
+      var hex = new Node(i, j);
+      row.push(hex);
     }
-  }
-  else if(size == 2)
-  {
-    for(var i = 0; i < 20; i++)
-    {
-      //The individual rows will be added one at a time
-      var row = [];
-      for(var j = 0; j < 20; j++)
-      {
-        //Adds a new node to the row
-        var hex = new Node(i, j);
-        row.push(hex);
-      }
-      grid.push(row);
-    }
-  }
-
-  else
-  {
-    for(var i = 0; i < 100; i++)
-    {
-      //The individual rows will be added one at a time
-      var row = [];
-      for(var j = 0; j < 100; j++)
-      {
-        //Adds a new node to the row
-        var hex = new Node(i, j);
-        row.push(hex);
-      }
-      grid.push(row);
-    }
+    grid.push(row);
   }
   console.log(grid);
 }
