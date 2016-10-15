@@ -9,17 +9,17 @@ function next() {
   }
 }
 
-var node = {
-  alive:false,
-  swap:false,
-  listNeighbors:function() {
+function Node() {
+  this.alive = false;
+  thi.swap = false;
+  function listNeighbors() {
     return [];
   }
 
   // countLivingNeighbors()
   // return int number of living neighbors
   // uses listNeighbors()
-  countLivingNeighbors:function() {
+  function countLivingNeighbors() {
     var sum = 0;
     for (var n in listNeighbors()) {
       if (n.alive) {
@@ -31,10 +31,10 @@ var node = {
 
   // process()
   // "process the node"
-  // use countLivingNeighbors() to determine wether the square
-  // should be swapped or not.
+  // use countLivingNeighbors() to determine wether the square should be
+  // swapped or not.
   // TODO currently only for square boards
-  process:function() {
+  function process() {
 
     // count the number of living neighbors
     var living = countLivingNeighbors();
@@ -59,7 +59,7 @@ var node = {
 
   // next()
   // swap alive to dead and dead to alive if marked to change.
-  next:function() {
+  function next() {
     if(this.swap) {
       this.alive = !this.alive;
       this.swap = false;
