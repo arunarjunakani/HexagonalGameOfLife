@@ -9,6 +9,10 @@ html, body{
 	height:100%;
 }
 
+body {
+	background: #f9f9f9;
+}
+
 h1 {
 	font-family:Arial;
 	font-size:35px;
@@ -22,11 +26,46 @@ h1 {
 	margin: auto;
 }
 
+#header .centerContainer {
+	left:50%;
+	transform: translate(-50%, 0px);
+	position:absolute;
+	bottom:0px;
+}
+
 /* ID's */
 
 #header {
-	padding-top: 10px;
+	position:relative;
+	height: 50px;
+	background: white;
 	border-bottom: 1px solid lightgray;
 }
 
+#bodyContainer {
+	background: white;
+	min-height: 100%;
+	position: absolute;
+	top:0px;
+	left:50%;
+	transform: translate(-50%, 0px);
+	z-index:-1;
+	border-right:1px solid gray;
+	border-left:1px solid gray;
+}
 
+#body {
+	position:relative;
+	top:50px;
+	padding:50px;
+}
+
+#board {
+	border: 1px solid black;
+}
+
+#window {
+	margin:auto;
+	border:1px solid blue;
+	width: 600px;
+}

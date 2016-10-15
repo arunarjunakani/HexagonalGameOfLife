@@ -3,7 +3,7 @@ This is a project for Purdue's 2016 Hello World Hackathon
 
 # The Hexagonal Game Of Life
 
-This is a project for Hello World 2016, Purdue's Freshman Hackathon. This is a simulation of a hexagonal modification to John Horton Conway's game of life. 
+This is a project for Hello World 2016, Purdue's Freshman Hackathon. This is a simulation of a hexagonal modification to John Horton Conway's game of life.
 
 
 ## Built With
