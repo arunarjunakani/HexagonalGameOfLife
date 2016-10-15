@@ -2,14 +2,14 @@
 var grid = [];
 
 //This creates the Node object. It's properties include its coordinates, and whether or not it's alive. It also has a toString() function
-function Node(x, y)
+function Node(n, m)
 {
-  this.x = x;
-  this.y = y;
+  this.n = n;
+  this.m = m;
   this.isAlive = false;
   this.toString = function()
   {
-    return "Node(" + this.x + ", " + this.y + ")";
+    return "Node(" + this.n + ", " + this.m + ")";
   };
 }
 
@@ -115,7 +115,7 @@ function getNeighbors(i, j)
     }
 
     console.log()
-    if((node.x)%2 == 0)
+    if((node.n)%2 == 0)
     {
       console.log("Even row");
       if(j+1 < grid[1].length)
