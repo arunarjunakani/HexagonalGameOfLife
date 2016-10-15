@@ -2,16 +2,17 @@
 var grid = [];
 
 function step() {
-  for (var row in nodeArr) {
-    for(var cell in row) {
-      cell.checkSwap();
+  for (var i = 0; i < grid.length; i++) {
+    for(var j = 0; j < grid[i].length; j++) {
+      grid[i][j].checkSwap();
     }
   }
-  for (var row in nodeArr) {
-    for(var cell in row) {
-      cell.doSwap();
+  for (var i = 0; i < grid.length; i++) {
+    for(var j = 0; j < grid[i].length; j++) {
+      grid[i][j].doSwap();
     }
   }
+  makeBoard(grid.length);
 }
 
 // This creates the Node object.
@@ -32,7 +33,7 @@ function Node(n, m)
   // countLivingNeighbors()
   // return int number of living neighbors
   // uses listNeighbors()
-  var countLivingNeighbors = function() {
+  this.countLivingNeighbors = function() {
     var sum = 0;
     for (var n in getNeighbors(this.n, this.m)) {
       if(n != null) {
@@ -49,10 +50,10 @@ function Node(n, m)
   // use countLivingNeighbors() to determine wether the square should be
   // swapped or not.
   // TODO currently only for square boards
-  var checkSwap = function() {
+  this.checkSwap = function() {
 
     // count the number of living neighbors
-    var living = countLivingNeighbors();
+    var living = this.countLivingNeighbors();
 
     // alive : < 2 die
     //       : 2-3 alive
@@ -74,7 +75,7 @@ function Node(n, m)
 
   // doSwap()
   // swap alive to dead and dead to alive if marked to change.
-  var doSwap = function() {
+  this.doSwap = function() {
     if(this.shouldSwap) {
       this.isAlive = !this.isAlive;
       this.shouldSwap = false;
