@@ -31,10 +31,16 @@ var makeBoard = function(width) {
 
         ctx.fillStyle = "#000000";
         ctx.strokeStyle = "#000000";
-        ctx.lineWidth = 1;
-
+        if(width != 100)
+        {
+          ctx.lineWidth = 1;
+        }
+        else
+        {
+          ctx.lineWidth = 0.25;
+        }
         drawBoard(ctx, boardWidth, boardHeight);
-	    
+
         clickListener = function(eventInfo) {
             var x,
                 y,
@@ -85,7 +91,7 @@ var makeBoard = function(width) {
 
                 // Clear the board
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-				
+
 				drawBoard(ctx, boardWidth, boardHeight);
 
                 // Check if the mouse's coords are on the board
@@ -104,7 +110,7 @@ var makeBoard = function(width) {
             canvas.addEventListener("click", function(eventInfo) {
 		clickListener(eventInfo);
             });
-			
+
 	    canvas.addEventListener("mousemove", function(eventInfo) {
 		mouseMoveListener(eventInfo);
             });
