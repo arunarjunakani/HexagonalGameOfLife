@@ -1,10 +1,21 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/rangeslider.css"/>
 		<title>Modified Game of Life</title>
 
+		<script src="jquery-3.1.1.min.js"></script>
 		<script src="jscolor.min.js"></script>
+		<script src="rangeslider.min.js"></script>
 		<script src="src.js"></script>
+
+		<script type=>
+			$(document).on('input', 'input[type="range"]', function(e) {
+				stepSpeed = logslider(e.currentTarget.value);
+				intervalStart();
+				clearInterval();
+			});
+		</script>
 	</head>
 
 	<body>
@@ -27,17 +38,26 @@
 					<script src="board.js"></script>
 
 					<div id="menu_bar">
-						<div class="button" onClick="myVar = setInterval(step, 500)">
+						<div class="button" onClick="intervalStart();">
 							<p>
 								Play
 							</p>
 						</div>
 
-						<div class="button" onClick="clearInterval(myVar)">
+						<div class="button" onClick="intervalEnd();">
 							<p>
 								Stop
 							</p>
 						</div>
+
+						<input
+						    type="range"
+						    min="0"
+						    max="8"
+						    step="1"
+						    value="6"
+						    data-orientation="horizontal"
+						>
 
 						<div class="button" onClick="step();">
 							<p>
@@ -45,15 +65,21 @@
 							</p>
 						</div>
 
+						<div class="button" onClick="killAll();">
+							<p>
+								Genocide
+							</p>
+						</div>
+
 						<div class="button" onClick="board(5);">
 							<p>
-								Size 1 (5)
+								Size 1 (10)
 							</p>
 						</div>
 
 						<div class="button" onClick="board(20);">
 							<p>
-								Size 2 (20)
+								Size 2 (25)
 							</p>
 						</div>
 
@@ -66,6 +92,12 @@
 						<div class="button" onClick="setFillColor('#ffffff');">
 							<p>
 								White
+							</p>
+						</div>
+
+						<div class="button" onClick="setMode('rainbow');">
+							<p>
+								Rainbow Mode!
 							</p>
 						</div>
 
