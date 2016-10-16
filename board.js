@@ -1,12 +1,15 @@
+var canvas = document.getElementById('board');
+var ctx = canvas.getContext('2d');
+
 var hasAddListener = false;
 var clickListener = null;
 var mouseMoveListener = null;
 
-var makeBoard = function(width) {
-    var canvas = document.getElementById('board');
+var fillColor = '#000000';
+var outlineColor = '#000000';
+var hoverOutlineColor = "#00fff6";
 
-    var height;
-    var side = 30;
+var makeBoard = function(width) {
 
     var hexHeight,
         hexRadius,
@@ -17,18 +20,17 @@ var makeBoard = function(width) {
         boardWidth = width,
         boardHeight = width;
 
-    hexHeight = Math.sin(hexagonAngle) * sideLength;
-    hexRadius = Math.cos(hexagonAngle) * sideLength;
-    hexRectangleHeight = sideLength + 2 * hexHeight;
-    hexRectangleWidth = 2 * hexRadius;
+		hexHeight = Math.sin(hexagonAngle) * sideLength;
+		hexRadius = Math.cos(hexagonAngle) * sideLength;
+		hexRectangleHeight = sideLength + 2 * hexHeight;
+		hexRectangleWidth = 2 * hexRadius;
 
     if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "#000000";
-        ctx.strokeStyle = "#000000";
+        ctx.fillStyle = fillColor;
+        ctx.strokeStyle = outlineColor;
         if(width != 100)
         {
           ctx.lineWidth = 1;
@@ -64,19 +66,20 @@ var makeBoard = function(width) {
                 if (hexY >= 0 && hexY < boardHeight) {
                     grid[hexX][hexY].shouldSwap = true;
                     grid[hexX][hexY].doSwap();
-                    ctx.fillStyle = "#000000";
+                    ctx.fillStyle = getFillColor();
+					ctx.strokeStyle = getOutlineColor();
                     drawBoard(ctx, boardWidth, boardHeight);
                 }
             }
         }
 
-	mouseMoveListener = function(eventInfo) {
-		var x,
-                    y,
-                    hexX,
-                    hexY,
-                    screenX,
-                    screenY;
+		mouseMoveListener = function(eventInfo) {
+				var x,
+				y,
+				hexX,
+				hexY,
+				screenX,
+				screenY;
 
                 x = eventInfo.offsetX || eventInfo.layerX;
                 y = eventInfo.offsetY || eventInfo.layerY;
@@ -95,22 +98,24 @@ var makeBoard = function(width) {
                 // Check if the mouse's coords are on the board
                 if (hexX >= 0 && hexX < boardWidth) {
                     if (hexY >= 0 && hexY < boardHeight) {
-                        ctx.strokeStyle = "#00fff6";
+                        ctx.strokeStyle = getHoverOutlineColor();
                         drawHexagon(ctx, screenX, screenY, grid[hexX][hexY].isAlive);
-			ctx.strokeStyle = "#000000";
+						ctx.strokeStyle = getOutlineColor();
                     }
                 }
+				
 	}
 
 		//Event listeners
         if (!hasAddListener) {
             hasAddListener = true;
+			
             canvas.addEventListener("click", function(eventInfo) {
-		clickListener(eventInfo);
+				clickListener(eventInfo);
             });
 
-	    canvas.addEventListener("mousemove", function(eventInfo) {
-		mouseMoveListener(eventInfo);
+			canvas.addEventListener("mousemove", function(eventInfo) {
+				mouseMoveListener(eventInfo);
             });
         }
     }
@@ -144,11 +149,44 @@ var makeBoard = function(width) {
             canvasContext.stroke();
         }
     }
+	
 };
+
+function getFillColor(){
+	return fillColor;
+}
+
+function getOutlineColor(){
+	return outlineColor;
+}
+
+function getHoverOutlineColor(){
+	return hoverOutlineColor;
+}
+
+function setFillColor(c){
+	fillColor = c;
+	updateBoard();
+}
+
+function setOutlineColor(c){
+	outlineColor = c;
+	updateBoard();
+}
+
+function setHoverOutlineColor(c){
+	hoverOutlineColor = c;
+	updateBoard();
+}
 
 function board(size) {
     setSize(size);
     makeBoard(size);
+}
+
+function updateBoard(){
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	makeBoard(grid.length);
 }
 
 board(20);
