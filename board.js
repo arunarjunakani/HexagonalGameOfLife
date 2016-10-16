@@ -239,6 +239,7 @@ function setMode(m) {
 		case "eraser":
 			setFillColor('ffffff');
 			setOutlineColor('000000');
+			setCanvasBackground('ffffff');
 			break;
 			
 		case "dark":
@@ -248,8 +249,8 @@ function setMode(m) {
 			break;
 			
 		case "drawer":
-			setFillColor('ffffff');
-			setOutlineColor('000000');
+			setFillColor('000000');
+			setOutlineColor('ffffff');
 			setCanvasBackground('ffffff');
 			break;
 			
