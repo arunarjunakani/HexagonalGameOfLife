@@ -2,6 +2,7 @@
 	<head>
 		<link rel="stylesheet" href="css/style.css"/>
 		<link rel="stylesheet" href="css/rangeslider.css"/>
+		<link rel="icon" href="Favicon.png">
 		<title>Hexagonal Game of Life</title>
 
 		<script src="jquery-3.1.1.min.js"></script>
@@ -48,7 +49,7 @@
 								Stop
 							</p>
 						</div>
-						
+
 						<div class="button" onClick="step();">
 							<p>
 								Next Step
@@ -69,33 +70,33 @@
 								Genocide
 							</p>
 						</div>
-						
+
 					</div>
 				</div>
-				
+
 				<div id="side_window">
-				
+
 					<h2>Change colors!</h2>
-					
+
 					<ul>
 						<li>
 							<button id="cp-bg" class="button jscolor {valueElement:null,onFineChange:'setCanvasBackground(this, false)'}">
 								Background
 							</button>
 						</li>
-						
+
 						<li>
 							<button id="cp-fill" class="button jscolor {valueElement:null,onFineChange:'setFillColor(this, false)'}">
 								Fill
 							</button>
 						</li>
-						
+
 						<li>
 							<button id="cp-line" class="button jscolor {valueElement:null,onFineChange:'setOutlineColor(this, false)'}">
 								Outline
 							</button>
 						</li>
-						
+
 						<li>
 							<button id="cp-hover" class="button jscolor {valueElement:null,onFineChange:'setHoverOutlineColor(this, false)'}">
 								Hover Outline
@@ -103,41 +104,41 @@
 						</li>
 					</ul>
 					<br/>
-					
+
 					<h2>Or pick a theme!</h2>
-					
+
 					<ul>
 						<li>
 							<button class="button" onClick="setMode('neon');">
 								Neon
 							</button>
-							
+
 							<button class="button" onClick="setMode('drawer');">
 								Drawer
 							</button>
-							
+
 							<button class="button" onClick="setMode('eraser');">
 								Eraser
 							</button>
-							
+
 							<button class="button" onClick="setMode('dark');">
 								Dark
 							</button>
-							
+
 							<button class="button" onClick="setMode('rainbow');">
 								Rainbow Mode!
 							</button>
-							
+
 							<button class="button" onClick="setMode('');">
 								Default
 							</button>
 						</li>
-						
+
 					</ul>
 					<br/>
-					
+
 					<h2>Pick a size!</h2>
-					
+
 						<select id="dropdown">
 							<option value="10">10x10</option>
 							<option value="25" selected="selected">25x25</option>
@@ -145,33 +146,34 @@
 							<option value="100">100x100</option>
 						</select>
 						<br/>
-						
+
 						<ul>
 							<li>
 								<button class="button" onClick="updateSize()">
 									Change size
 								</button>
-							</li>	
+							</li>
 						</ul>
-					
-					
+
+
 				</div>
 
 			</div>
-			
+
 			<div id="content">
 				<h1>Rules:</h1>
+				
 				<br/>
 				<h2>Living cells</h2>
 				<ol>
 					<li>
 						Each cell with one or no neighbors dies from isolation.
 					</li>
-					
+
 					<li>
 						Each cell with three or more neighbors dies from overpopulation.
 					</li>
-					
+
 					<li>
 						Only the cells with two neighbors survives.
 					</li>
@@ -183,10 +185,10 @@
 					<li>
 						Each cell with two neighbors revives.
 					</li>
-				
+
 				</ol>
 			</div>
-			
+
 		</div>
 
 	</body>

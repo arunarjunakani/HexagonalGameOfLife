@@ -10,7 +10,7 @@ html, body{
 }
 
 body {
-	background: #f9f9f9;
+	background: #d7f7f1;
 }
 
 h1 {
@@ -74,7 +74,7 @@ select {
 
 .button {
 	border:1px solid gray;
-	background: #f9f9f9;
+	background: white;
 	padding:4px;
 	cursor: pointer;
 	cursor: hand;
@@ -83,7 +83,7 @@ select {
 }
 
 .button:hover{
-	background:#dddddd;
+	background:#edfffc;
 }
 
 #menu_bar .button {
@@ -100,7 +100,7 @@ select {
 }
 
 #body_container {
-	background: white;
+	background: #f9f9f9;
 	min-height: calc(100% - 51px);
 	position: absolute;
 	top:0px;
@@ -142,5 +142,4 @@ select {
 #menu_bar {
 	margin-top:5px;
 	width: 600px;
-	background: white;
 }
