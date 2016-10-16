@@ -12,8 +12,7 @@
 		<script type=>
 			$(document).on('input', 'input[type="range"]', function(e) {
 				stepSpeed = logslider(e.currentTarget.value);
-				intervalStart();
-				clearInterval();
+				intervalCont();
 			});
 		</script>
 	</head>
@@ -65,19 +64,19 @@
 							</p>
 						</div>
 
-						<div class="button" onClick="killAll();">
+						<div class="button" onClick="board(grid.length);">
 							<p>
 								Genocide
 							</p>
 						</div>
 
-						<div class="button" onClick="board(5);">
+						<div class="button" onClick="board(10);">
 							<p>
 								Size 1 (10)
 							</p>
 						</div>
 
-						<div class="button" onClick="board(20);">
+						<div class="button" onClick="board(25);">
 							<p>
 								Size 2 (25)
 							</p>

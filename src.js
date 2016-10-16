@@ -3,6 +3,7 @@ var grid = [];
 var stepSpeed = 300;
 
 function step() {
+  var allDead = true;
   for (var row = 0; row < grid.length; row++) {
     for(var col = 0; col < grid[row].length; col++) {
       grid[row][col].checkSwap();
@@ -11,9 +12,17 @@ function step() {
   for (var row = 0; row < grid.length; row++) {
     for(var col = 0; col < grid[row].length; col++) {
       grid[row][col].doSwap();
+      if(grid[row][col].isAlive) {
+        allDead = false;
+      }
     }
   }
-  makeBoard(grid.length);
+  if(allDead) {
+    board(grid.length);
+  }
+  else {
+    makeBoard(grid.length);
+  }
 }
 
 // This creates the Node object.
