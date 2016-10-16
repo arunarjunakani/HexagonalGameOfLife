@@ -163,8 +163,8 @@ var makeBoard = function(width) {
 			}
 			
 			if (mode !== 'eraser'){
-				canvasContext.stroke();
-			}
+				canvasContext.stroke(); 
+			} else { }
 			
             canvasContext.fill();
 			
@@ -194,7 +194,6 @@ function getHoverOutlineColor(){
 }
 
 function setFillColor(c){
-	mode = ""
 	fillColor = '#' + c;
 	updateBoard();
 	if(document.getElementById('cp-fill') != null) {
