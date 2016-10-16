@@ -19,6 +19,31 @@ h1 {
 	font-weight:100;
 }
 
+h2 {
+	font-family:Arial;
+	font-size:20px;
+	font-weight:100;
+}
+
+button {
+	padding:3px;
+	font-size:16px;
+	border: none;
+}
+
+ul {
+	list-style:none;
+}
+
+li .button{
+	margin-top:5px;
+	width:120px;
+}
+
+#side_window button {
+	display:inline;
+}
+
 /* Classes */
 
 .center_container{
@@ -33,12 +58,21 @@ h1 {
 }
 
 .button {
-	display:inline-block;
 	border:1px solid gray;
 	background: #f9f9f9;
-	padding:3px;
+	padding:4px;
 	cursor: pointer;
 	cursor: hand;
+	transition:background .3s;
+	font-size:16px;
+}
+
+.button:hover{
+	background:#dddddd;
+}
+
+#menu_bar .button {
+	display:inline-block;
 }
 
 /* ID's */
@@ -62,6 +96,7 @@ h1 {
 }
 
 #body {
+	position:relative;
 	padding-top:50px;
 	padding-left:50px;
 	padding-right:50px;
@@ -72,8 +107,16 @@ h1 {
 }
 
 #window {
-	margin:auto;
 	width: 600px;
+	margin:auto;
+}
+
+#side_window {
+	height:500px;
+	width:200px;
+	position:absolute;
+	right:-10px;
+	top:50px;
 }
 
 #menu_bar {
