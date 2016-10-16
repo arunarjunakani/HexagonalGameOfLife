@@ -1,5 +1,6 @@
 var canvas = document.getElementById('board');
 var ctx = canvas.getContext('2d');
+var mode = '';
 
 var hasAddListener = false;
 var clickListener = null;
@@ -148,6 +149,15 @@ var makeBoard = function(width) {
         canvasContext.closePath();
 
         if (fill) {
+			
+			switch (mode) {
+				case "rainbow":
+					canvasContext.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+					break;
+				default:
+					break;
+			}
+			
             canvasContext.fill();
 			canvasContext.stroke();
         } else {
@@ -181,6 +191,17 @@ function setOutlineColor(c){
 
 function setHoverOutlineColor(c){
 	hoverOutlineColor = '#' + c;
+	updateBoard();
+}
+
+function setMode(m) {
+	if (m == mode) {
+		mode = '';
+		updateBoard();
+		return;
+	}
+	
+	mode = m;
 	updateBoard();
 }
 
