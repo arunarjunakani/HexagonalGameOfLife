@@ -72,6 +72,10 @@ function Node(row, col)
     }
   }
 
+  this.kill = function() {
+    this.isAlive = false;
+  }
+
   // doSwap()
   // swap alive to dead and dead to alive if marked to change.
   this.doSwap = function() {
@@ -108,7 +112,6 @@ function setSize(size)
     }
     grid.push(rowArr);
   }
-  console.log(grid);
 }
 
 function getNeighbors(row, col)

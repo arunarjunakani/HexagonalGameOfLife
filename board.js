@@ -227,6 +227,10 @@ function intervalEnd() {
   myVar = false;
 }
 
+function killAll() {
+  board(grid.length);
+}
+
 var logArr = [50, 100, 150, 200, 250, 375, 500, 1000, 2000];
 function logslider(position) {
   return logArr[position];
