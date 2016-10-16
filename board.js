@@ -62,8 +62,10 @@ var makeBoard = function(width) {
             // Check if the mouse's coords are on the board
             if (hexX >= 0 && hexX < boardWidth) {
                 if (hexY >= 0 && hexY < boardHeight) {
+                    console.log(grid[hexX][hexY]);
                     grid[hexX][hexY].shouldSwap = true;
                     grid[hexX][hexY].doSwap();
+
                     ctx.fillStyle = "#000000";
                     drawBoard(ctx, boardWidth, boardHeight);
                 }
