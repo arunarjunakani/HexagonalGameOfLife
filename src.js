@@ -2,16 +2,14 @@
 var grid = [];
 
 function step() {
-  for (var i = 0; i < grid.length; i++) {
-    for(var j = 0; j < grid[i].length; j++) {
-      console.log(grid[i][j]);
-      grid[i][j].checkSwap();
-      console.log(grid[i][j]);
+  for (var row = 0; row < grid.length; row++) {
+    for(var col = 0; col < grid[i].length; col++) {
+      grid[row][col].checkSwap();
     }
   }
-  for (var i = 0; i < grid.length; i++) {
-    for(var j = 0; j < grid[i].length; j++) {
-      grid[i][j].doSwap();
+  for (var row = 0; row < grid.length; row++) {
+    for(var col = 0; col < grid[i].length; col++) {
+      grid[row][col].doSwap();
     }
   }
   makeBoard(grid.length);
@@ -97,17 +95,17 @@ function setSize(size)
   var side = 600 / (size + .5) / Math.sqrt(3);
   document.getElementById('board').height = ((side * size) + (side * size / 2)) + (side/2);
 
-  for(var i = 0; i < size; i++)
+  for(var row = 0; row < size; row++)
   {
     //The individual rows will be added one at a time
-    var row = [];
-    for(var j = 0; j < size; j++)
+    var rowArr = [];
+    for(var col = 0; col < size; col++)
     {
       //Adds a new node to the row
-      var hex = new Node(i, j);
-      row.push(hex);
+      var hex = new Node(row, col);
+      rowArr.push(hex);
     }
-    grid.push(row);
+    grid.push(rowArr);
   }
   console.log(grid);
 }
