@@ -35,36 +35,36 @@ var makeBoard = function(width) {
 
         drawBoard(ctx, boardWidth, boardHeight);
 	    
-	clickListener = function(eventInfo) {
-		var x,
-		y,
-		hexX,
-		hexY,
-		screenX,
-		screenY;
+        clickListener = function(eventInfo) {
+            var x,
+                y,
+                hexX,
+                hexY,
+                screenX,
+                screenY;
 
-		x = eventInfo.offsetX || eventInfo.layerX;
-		y = eventInfo.offsetY || eventInfo.layerY;
+            x = eventInfo.offsetX || eventInfo.layerX;
+            y = eventInfo.offsetY || eventInfo.layerY;
 
-		hexY = Math.floor(y / (hexHeight + sideLength));
-		hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
+            hexY = Math.floor(y / (hexHeight + sideLength));
+            hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
 
-		screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
-		screenY = hexY * (hexHeight + sideLength);
+            screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
+            screenY = hexY * (hexHeight + sideLength);
 
-		// Clear the board
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Clear the board
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-		// Check if the mouse's coords are on the board
-		if (hexX >= 0 && hexX < boardWidth) {
-			if (hexY >= 0 && hexY < boardHeight) {
-				grid[hexX][hexY].shouldSwap = true;
-				grid[hexX][hexY].doSwap();
-				ctx.fillStyle = "#000000";
-			drawBoard(ctx, boardWidth, boardHeight);
-		}
-	}
-}
+            // Check if the mouse's coords are on the board
+            if (hexX >= 0 && hexX < boardWidth) {
+                if (hexY >= 0 && hexY < boardHeight) {
+                    grid[hexX][hexY].shouldSwap = true;
+                    grid[hexX][hexY].doSwap();
+                    ctx.fillStyle = "#000000";
+                    drawBoard(ctx, boardWidth, boardHeight);
+                }
+            }
+        }
 
 	mouseMoveListener = function(eventInfo) {
 		var x,
@@ -105,7 +105,7 @@ var makeBoard = function(width) {
 		clickListener(eventInfo);
             });
 			
-	canvas.addEventListener("mousemove", function(eventInfo) {
+	    canvas.addEventListener("mousemove", function(eventInfo) {
 		mouseMoveListener(eventInfo);
             });
         }
