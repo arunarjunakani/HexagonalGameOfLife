@@ -4,7 +4,9 @@ var grid = [];
 function step() {
   for (var i = 0; i < grid.length; i++) {
     for(var j = 0; j < grid[i].length; j++) {
+      console.log(grid[i][j]);
       grid[i][j].checkSwap();
+      console.log(grid[i][j]);
     }
   }
   for (var i = 0; i < grid.length; i++) {
@@ -35,11 +37,10 @@ function Node(n, m)
   // uses listNeighbors()
   this.countLivingNeighbors = function() {
     var sum = 0;
-    for (var n in getNeighbors(this.n, this.m)) {
-      if(n != null) {
-        if (n.isAlive) {
-          sum++;
-        }
+    var neighbors = getNeighbors(this.n, this.m);
+    for (var i = 0; i < neighbors.length; i++) {
+      if (neighbors[i].isAlive) {
+        sum++;
       }
     }
     return sum;
@@ -51,18 +52,17 @@ function Node(n, m)
   // swapped or not.
   // TODO currently only for square boards
   this.checkSwap = function() {
-
     // count the number of living neighbors
     var living = this.countLivingNeighbors();
 
-    // alive : < 2 die
-    //       : 2-3 alive
-    //       : > 3 die
+    // alive : < 3 die
+    //       : 3-4 alive
+    //       : > 4 die
     //
     // dead  : = 3 alive
     //       : ! 3 dead
     if(this.isAlive) {
-      if(living < 2 || living > 3) {
+      if(living < 3 || living > 4) {
         this.shouldSwap = true;
       }
     }
@@ -112,8 +112,6 @@ function getNeighbors(i, j)
 {
     var node = grid[i][j];
     var neighbors = [];
-    console.log(i);
-    console.log(j);
     if(j-1 >= 0)
     {
       neighbors.push(grid[i][j-1]);
@@ -134,10 +132,8 @@ function getNeighbors(i, j)
       neighbors.push(grid[i+1][j]);
     }
 
-    console.log()
     if((node.n)%2 == 0)
     {
-      console.log("Even row");
       if(j-1 >= 0)
       {
         if(i-1 >= 0)
@@ -152,7 +148,6 @@ function getNeighbors(i, j)
     }
     else
     {
-      console.log("Odd row");
       if(j+1 < grid[i].length)
       {
         if(i-1 >= 0)
@@ -165,6 +160,5 @@ function getNeighbors(i, j)
         }
       }
     }
-    console.log(neighbors.toString());
     return neighbors;
 }

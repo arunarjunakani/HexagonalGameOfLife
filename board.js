@@ -1,8 +1,7 @@
 var hasAddListener = false;
+var clickListener = null;
 
 var makeBoard = function(width) {
-    setSize(width);
-
     var canvas = document.getElementById('board');
 
     var height;
@@ -33,38 +32,41 @@ var makeBoard = function(width) {
 
         drawBoard(ctx, boardWidth, boardHeight);
 
+        clickListener = function(eventInfo) {
+            var x,
+                y,
+                hexX,
+                hexY,
+                screenX,
+                screenY;
+
+            x = eventInfo.offsetX || eventInfo.layerX;
+            y = eventInfo.offsetY || eventInfo.layerY;
+
+            hexY = Math.floor(y / (hexHeight + sideLength));
+            hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
+
+            screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
+            screenY = hexY * (hexHeight + sideLength);
+
+            // Clear the board
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Check if the mouse's coords are on the board
+            if (hexX >= 0 && hexX < boardWidth) {
+                if (hexY >= 0 && hexY < boardHeight) {
+                    grid[hexX][hexY].shouldSwap = true;
+                    grid[hexX][hexY].doSwap();
+                    ctx.fillStyle = "#000000";
+                    drawBoard(ctx, boardWidth, boardHeight);
+                }
+            }
+        }
+
         if (!hasAddListener) {
             hasAddListener = true;
             canvas.addEventListener("click", function(eventInfo) {
-
-                var x,
-                    y,
-                    hexX,
-                    hexY,
-                    screenX,
-                    screenY;
-
-                x = eventInfo.offsetX || eventInfo.layerX;
-                y = eventInfo.offsetY || eventInfo.layerY;
-
-                hexY = Math.floor(y / (hexHeight + sideLength));
-                hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
-
-                screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
-                screenY = hexY * (hexHeight + sideLength);
-
-                // Clear the board
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                // Check if the mouse's coords are on the board
-                if (hexX >= 0 && hexX < boardWidth) {
-                    if (hexY >= 0 && hexY < boardHeight) {
-                        grid[hexX][hexY].shouldSwap = true;
-                        grid[hexX][hexY].doSwap();
-                        ctx.fillStyle = "#000000";
-                        drawBoard(ctx, boardWidth, boardHeight);
-                    }
-                }
+              clickListener(eventInfo);
             });
         }
     }
@@ -100,4 +102,9 @@ var makeBoard = function(width) {
     }
 };
 
-makeBoard(20);
+function board(size) {
+    setSize(size);
+    makeBoard(size);
+}
+
+board(20);
