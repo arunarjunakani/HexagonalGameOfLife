@@ -149,6 +149,7 @@ var makeBoard = function(width) {
 
         if (fill) {
             canvasContext.fill();
+			canvasContext.stroke();
         } else {
             canvasContext.stroke();
         }
@@ -169,17 +170,17 @@ function getHoverOutlineColor(){
 }
 
 function setFillColor(c){
-	fillColor = c;
+	fillColor = '#' + c;
 	updateBoard();
 }
 
 function setOutlineColor(c){
-	outlineColor = c;
+	outlineColor = '#' + c;
 	updateBoard();
 }
 
 function setHoverOutlineColor(c){
-	hoverOutlineColor = c;
+	hoverOutlineColor = '#' + c;
 	updateBoard();
 }
 
