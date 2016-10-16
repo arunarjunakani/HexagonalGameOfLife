@@ -93,6 +93,10 @@ function setSize(size)
 {
   //This clears the array so this method can be run several times.
   grid = [];
+  
+  var side = 600 / (size + .5) / Math.sqrt(3);
+  document.getElementById('board').height = ((side * size) + (side * size / 2)) + (side/2);
+  
   for(var i = 0; i < size; i++)
   {
     //The individual rows will be added one at a time
