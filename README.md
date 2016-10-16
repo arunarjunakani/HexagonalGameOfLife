@@ -20,3 +20,9 @@ This is a project for Hello World 2016, Purdue's Freshman Hackathon. This is a s
 
 * John Horton Conway for creating "Conway's Game of Life"
 * Hexagons for making simple things much more interesting
+* zackthehuman [link](https://gist.github.com/zackthehuman/1867663) for the hexagons canvas drawing
+
+
+## Final Note
+
+This was our first hackaton and it was plain awesome. We learned a bunch and put in long hours to create this project. We are so happy to show off our project and we hope that we can continue making such cool stuff in the future.
