@@ -194,22 +194,35 @@ function getHoverOutlineColor(){
 }
 
 function setFillColor(c){
+	mode = ""
 	fillColor = '#' + c;
 	updateBoard();
+	if(document.getElementById('cp-fill') != null) {
+		document.getElementById('cp-fill').jscolor.fromString(c);
+	}
 }
 
 function setOutlineColor(c){
 	outlineColor = '#' + c;
 	updateBoard();
+	if(document.getElementById('cp-line') != null) {
+		document.getElementById('cp-line').jscolor.fromString(c);
+	}
 }
 
 function setHoverOutlineColor(c){
 	hoverOutlineColor = '#' + c;
 	updateBoard();
+	if(document.getElementById('cp-hover') != null) {
+		document.getElementById('cp-hover').jscolor.fromString(c);
+	}
 }
 
 function setCanvasBackground(c){
 	document.getElementById('board').style.background = '#' + c;
+	if(document.getElementById('cp-bg') != null) {
+		document.getElementById('cp-bg').jscolor.fromString(c);
+	}
 }
 
 function setMode(m) {
@@ -226,7 +239,6 @@ function setMode(m) {
 		case "eraser":
 			setFillColor('ffffff');
 			setOutlineColor('000000');
-			setCanvasBackground('ffffff');
 			break;
 			
 		case "dark":
@@ -303,3 +315,8 @@ function logslider(position) {
 }
 
 board(20);
+
+$( document ).ready(function() {
+    setMode('');
+	setHoverOutlineColor('00fff6');
+});
