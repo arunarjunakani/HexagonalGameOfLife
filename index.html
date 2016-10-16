@@ -48,6 +48,12 @@
 								Stop
 							</p>
 						</div>
+						
+						<div class="button" onClick="step();">
+							<p>
+								Next Step
+							</p>
+						</div>
 
 						<input
 						    type="range"
@@ -58,33 +64,9 @@
 						    data-orientation="horizontal"
 						>
 
-						<div class="button" onClick="step();">
-							<p>
-								Next Step
-							</p>
-						</div>
-
 						<div class="button" onClick="board(grid.length);">
 							<p>
 								Genocide
-							</p>
-						</div>
-
-						<div class="button" onClick="board(10);">
-							<p>
-								Size 1 (10)
-							</p>
-						</div>
-
-						<div class="button" onClick="board(25);">
-							<p>
-								Size 2 (25)
-							</p>
-						</div>
-
-						<div class="button" onClick="board(100);">
-							<p>
-								Size 3 (100)
 							</p>
 						</div>
 						
@@ -152,6 +134,26 @@
 						</li>
 						
 					</ul>
+					<br/>
+					
+					<h2>Pick a size!</h2>
+					
+						<select id="dropdown">
+							<option value="10">10x10</option>
+							<option value="25" selected="selected">25x25</option>
+							<option value="50">50x50</option>
+							<option value="100">100x100</option>
+						</select>
+						<br/>
+						
+						<ul>
+							<li>
+								<button class="button" onClick="updateSize()">
+									Change size
+								</button>
+							</li>	
+						</ul>
+					
 					
 				</div>
 
