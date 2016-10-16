@@ -26,10 +26,9 @@ h1 {
 	margin: auto;
 }
 
-#header .center_container {
-	left:50%;
-	transform: translate(-50%, 0px);
-	position:absolute;
+#header .center_container
+{
+	text-align: center;
 	bottom:0px;
 }
 
@@ -38,7 +37,7 @@ h1 {
 	border:1px solid gray;
 	background: #f9f9f9;
 	padding:3px;
-	cursor: pointer; 
+	cursor: pointer;
 	cursor: hand;
 }
 
@@ -82,5 +81,3 @@ h1 {
 	width: 600px;
 	background: white;
 }
-
-

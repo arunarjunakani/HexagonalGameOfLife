@@ -64,8 +64,8 @@ var makeBoard = function(width) {
             // Check if the mouse's coords are on the board
             if (hexX >= 0 && hexX < boardWidth) {
                 if (hexY >= 0 && hexY < boardHeight) {
-                    grid[hexX][hexY].shouldSwap = true;
-                    grid[hexX][hexY].doSwap();
+                    grid[hexY][hexX].shouldSwap = true;
+                    grid[hexY][hexX].doSwap();
                     ctx.fillStyle = getFillColor();
 					ctx.strokeStyle = getOutlineColor();
                     drawBoard(ctx, boardWidth, boardHeight);
@@ -99,7 +99,7 @@ var makeBoard = function(width) {
                 if (hexX >= 0 && hexX < boardWidth) {
                     if (hexY >= 0 && hexY < boardHeight) {
                         ctx.strokeStyle = getHoverOutlineColor();
-                        drawHexagon(ctx, screenX, screenY, grid[hexX][hexY].isAlive);
+                        drawHexagon(ctx, screenX, screenY, grid[hexY][hexX].isAlive);
 						ctx.strokeStyle = getOutlineColor();
                     }
                 }
@@ -126,7 +126,11 @@ var makeBoard = function(width) {
 
         for (i = 0; i < width; ++i) {
             for (j = 0; j < height; ++j) {
-                drawHexagon(ctx, i * hexRectangleWidth + ((j % 2) * hexRadius), j * (sideLength + hexHeight), grid[i][j].isAlive);
+                drawHexagon(
+                  ctx,
+                  i * hexRectangleWidth + ((j % 2) * hexRadius),
+                  j * (sideLength + hexHeight),
+                  grid[j][i].isAlive);
             }
         }
     }

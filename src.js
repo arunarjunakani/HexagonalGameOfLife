@@ -2,16 +2,14 @@
 var grid = [];
 
 function step() {
-  for (var i = 0; i < grid.length; i++) {
-    for(var j = 0; j < grid[i].length; j++) {
-      console.log(grid[i][j]);
-      grid[i][j].checkSwap();
-      console.log(grid[i][j]);
+  for (var row = 0; row < grid.length; row++) {
+    for(var col = 0; col < grid[row].length; col++) {
+      grid[row][col].checkSwap();
     }
   }
-  for (var i = 0; i < grid.length; i++) {
-    for(var j = 0; j < grid[i].length; j++) {
-      grid[i][j].doSwap();
+  for (var row = 0; row < grid.length; row++) {
+    for(var col = 0; col < grid[row].length; col++) {
+      grid[row][col].doSwap();
     }
   }
   makeBoard(grid.length);
@@ -25,10 +23,10 @@ function step() {
 // Functions:
 //  TODO add other functions
 //  toString() function
-function Node(n, m)
+function Node(row, col)
 {
-  this.n = n;
-  this.m = m;
+  this.row = row;
+  this.col = col;
   this.isAlive = false;
   this.shouldSwap = false;
 
@@ -37,7 +35,7 @@ function Node(n, m)
   // uses listNeighbors()
   this.countLivingNeighbors = function() {
     var sum = 0;
-    var neighbors = getNeighbors(this.n, this.m);
+    var neighbors = getNeighbors(this.row, this.col);
     for (var i = 0; i < neighbors.length; i++) {
       if (neighbors[i].isAlive) {
         sum++;
@@ -62,7 +60,7 @@ function Node(n, m)
     // dead  : = 3 alive
     //       : ! 3 dead
     if(this.isAlive) {
-      if(living < 3 || living > 4) {
+      if(living < 2 || living > 3) {
         this.shouldSwap = true;
       }
     }
@@ -84,7 +82,7 @@ function Node(n, m)
 
   this.toString = function()
   {
-    return "Node(" + this.n + ", " + this.m + ")";
+    return "Node(" + this.row + ", " + this.col + ")";
   };
 }
 
@@ -93,74 +91,87 @@ function setSize(size)
 {
   //This clears the array so this method can be run several times.
   grid = [];
-  
+
   var side = 600 / (size + .5) / Math.sqrt(3);
   document.getElementById('board').height = ((side * size) + (side * size / 2)) + (side/2);
-  
-  for(var i = 0; i < size; i++)
+
+  for(var row = 0; row < size; row++)
   {
     //The individual rows will be added one at a time
-    var row = [];
-    for(var j = 0; j < size; j++)
+    var rowArr = [];
+    for(var col = 0; col < size; col++)
     {
       //Adds a new node to the row
-      var hex = new Node(i, j);
-      row.push(hex);
+      var hex = new Node(row, col);
+      rowArr.push(hex);
     }
-    grid.push(row);
+    grid.push(rowArr);
   }
   console.log(grid);
 }
 
-function getNeighbors(i, j)
+function getNeighbors(row, col)
 {
-    var node = grid[i][j];
+    var node = grid[row][col];
     var neighbors = [];
-    if(j-1 >= 0)
+
+    // left
+    if(col-1 >= 0)
     {
-      neighbors.push(grid[i][j-1]);
+      neighbors.push(grid[row][col-1]);
     }
 
-    if(j+1 < grid[i].length)
+    // right
+    if(col+1 < grid[row].length)
     {
-      neighbors.push(grid[i][j+1]);
+      neighbors.push(grid[row][col+1]);
     }
 
-    if(i-1 >= 0)
+    // up
+    if(row-1 >= 0)
     {
-      neighbors.push(grid[i-1][j]);
+      neighbors.push(grid[row-1][col]);
     }
 
-    if(i+1 < grid.length)
+    // down
+    if(row+1 < grid.length)
     {
-      neighbors.push(grid[i+1][j]);
+      neighbors.push(grid[row+1][col]);
     }
 
-    if((node.n)%2 == 0)
+    // even row
+    //  odd  0 1
+    // even 0 1 2
+    //  odd  0 1
+    if((node.row)%2 == 0)
     {
-      if(j-1 >= 0)
+      if(col-1 >= 0)
       {
-        if(i-1 >= 0)
+        if(row-1 >= 0)
         {
-          neighbors.push(grid[i-1][j-1]);
+          neighbors.push(grid[row-1][col-1]);
         }
-        if(i+1 < grid.length)
+        if(row+1 < grid.length)
         {
-          neighbors.push(grid[i+1][j-1]);
+          neighbors.push(grid[row+1][col-1]);
         }
       }
     }
+    // odd row
+    // even  1 2
+    //  odd 0 1 2
+    // even  1 2
     else
     {
-      if(j+1 < grid[i].length)
+      if(col+1 < grid[row].length)
       {
-        if(i-1 >= 0)
+        if(row-1 >= 0)
         {
-          neighbors.push(grid[i-1][j+1]);
+          neighbors.push(grid[row-1][col+1]);
         }
-        if(i+1 < grid.length)
+        if(row+1 < grid.length)
         {
-          neighbors.push(grid[i+1][j+1]);
+          neighbors.push(grid[row+1][col+1]);
         }
       }
     }
