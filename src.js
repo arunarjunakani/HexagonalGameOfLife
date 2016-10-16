@@ -3,6 +3,7 @@ var grid = [];
 var stepSpeed = 300;
 
 function step() {
+  var allDead = true;
   for (var row = 0; row < grid.length; row++) {
     for(var col = 0; col < grid[row].length; col++) {
       grid[row][col].checkSwap();
@@ -11,9 +12,17 @@ function step() {
   for (var row = 0; row < grid.length; row++) {
     for(var col = 0; col < grid[row].length; col++) {
       grid[row][col].doSwap();
+      if(grid[row][col].isAlive) {
+        allDead = false;
+      }
     }
   }
-  makeBoard(grid.length);
+  if(allDead) {
+    board(grid.length);
+  }
+  else {
+    makeBoard(grid.length);
+  }
 }
 
 // This creates the Node object.
@@ -72,6 +81,10 @@ function Node(row, col)
     }
   }
 
+  this.kill = function() {
+    this.isAlive = false;
+  }
+
   // doSwap()
   // swap alive to dead and dead to alive if marked to change.
   this.doSwap = function() {
@@ -108,7 +121,6 @@ function setSize(size)
     }
     grid.push(rowArr);
   }
-  console.log(grid);
 }
 
 function getNeighbors(row, col)

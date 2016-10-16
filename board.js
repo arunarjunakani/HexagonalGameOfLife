@@ -253,7 +253,10 @@ function setMode(m) {
 	updateBoard();
 }
 
+myVar = false;
+
 function board(size) {
+    intervalEnd();
     setSize(size);
     makeBoard(size);
 }
@@ -263,16 +266,28 @@ function updateBoard(){
 	makeBoard(grid.length);
 }
 
-myVar = false;
 
 function intervalStart() {
-  clearInterval(myVar);
+  if(myVar != false) {
+    clearInterval(myVar);
+  }
   myVar = setInterval(step, stepSpeed);
 }
 
 function intervalEnd() {
-  clearInterval(myVar);
+  if(myVar != false) {
+    clearInterval(myVar);
+  }
   myVar = false;
+}
+
+function intervalCont() {
+  if(myVar == false) {
+    intervalEnd();
+  }
+  else {
+    intervalStart();
+  }
 }
 
 var logArr = [50, 100, 150, 200, 250, 375, 500, 1000, 2000];
