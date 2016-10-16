@@ -60,8 +60,8 @@ function Node(row, col)
     // dead  : = 3 alive
     //       : ! 3 dead
     if(this.isAlive) {
-      if(living < 3 || living > 4) {
-        // this.shouldSwap = true;
+      if(living < 2 || living > 3) {
+        this.shouldSwap = true;
       }
     }
     else {
