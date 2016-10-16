@@ -190,3 +190,24 @@ function getNeighbors(row, col)
     }
     return neighbors;
 }
+
+function randomize()
+{
+  //This will go through every node and give it a 15% chance of being alive.
+  for(var i = 0; i < grid.length; i++)
+  {
+    for(var j = 0; j < grid[i].length; j++)
+    {
+      var num = Math.random();
+      if(num < 0.15)
+      {
+        grid[i][j].isAlive = true;
+      }
+      else
+      {
+        grid[i][j].isAlive = false;
+      }
+    }
+  }
+  updateBoard();
+}
