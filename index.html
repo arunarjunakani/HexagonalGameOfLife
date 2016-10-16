@@ -26,6 +26,18 @@
 					<script src="board.js"></script>
 
 					<div id="menu_bar">
+						<div class="button" onClick="running = setTimeout(step(), 2000)">
+							<p>
+								Play
+							</p>
+						</div>
+
+						<div class="button" onClick="clearTimeout(running)">
+							<p>
+								Stop
+							</p>
+						</div>
+
 						<div class="button" onClick="step();">
 							<p>
 								Call step()
