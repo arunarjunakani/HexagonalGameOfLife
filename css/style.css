@@ -49,6 +49,12 @@ select {
 	font-size:16px;
 }
 
+#content li {
+	margin-left:40px;
+	margin-top:10px;
+	font-size:20px;
+}
+
 #side_window button {
 	display:inline;
 }
@@ -104,11 +110,17 @@ select {
 	border-left:1px solid gray;
 }
 
-#body {
+#window_container {
 	width:760px;
 	position:relative;
 	padding-top:50px;
 	margin:auto;
+}
+
+#content {
+	width:800px;
+	margin:100px;
+	margin-top:50px;
 }
 
 #board {

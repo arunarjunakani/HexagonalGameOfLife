@@ -164,7 +164,7 @@ var makeBoard = function(width) {
 			
 			if (mode !== 'eraser'){
 				canvasContext.stroke(); 
-			} else { }
+			}
 			
             canvasContext.fill();
 			
