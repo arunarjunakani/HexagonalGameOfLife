@@ -1,5 +1,6 @@
 //This creates the empty grid
 var grid = [];
+var stepSpeed = 300;
 
 function step() {
   for (var row = 0; row < grid.length; row++) {
@@ -13,7 +14,6 @@ function step() {
     }
   }
   makeBoard(grid.length);
-  console.log("Step");
 }
 
 // This creates the Node object.

@@ -10,6 +10,8 @@ var fillColor = '#000000';
 var outlineColor = '#000000';
 var hoverOutlineColor = "#00fff6";
 
+var isChangingBorder = false;
+
 var makeBoard = function(width) {
 
     var hexHeight,
@@ -99,18 +101,20 @@ var makeBoard = function(width) {
                 // Check if the mouse's coords are on the board
                 if (hexX >= 0 && hexX < boardWidth) {
                     if (hexY >= 0 && hexY < boardHeight) {
+						isChangingBorder = true;
                         ctx.strokeStyle = getHoverOutlineColor();
                         drawHexagon(ctx, screenX, screenY, grid[hexY][hexX].isAlive);
 						ctx.strokeStyle = getOutlineColor();
+						isChangingBorder = false;
                     }
                 }
-				
+
 	}
 
 		//Event listeners
         if (!hasAddListener) {
             hasAddListener = true;
-			
+
             canvas.addEventListener("click", function(eventInfo) {
 				clickListener(eventInfo);
             });
@@ -149,7 +153,7 @@ var makeBoard = function(width) {
         canvasContext.closePath();
 
         if (fill) {
-			
+
 			switch (mode) {
 				case "rainbow":
 					canvasContext.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
@@ -158,13 +162,23 @@ var makeBoard = function(width) {
 					break;
 			}
 			
+			if (mode !== 'eraser'){
+				canvasContext.stroke();
+			}
+			
             canvasContext.fill();
-			canvasContext.stroke();
+			
         } else {
-            canvasContext.stroke();
+            if (mode === 'drawer' && !isChangingBorder){
+				canvasContext.strokeStyle = '#ffffff';
+				canvasContext.stroke();
+				canvasContext.strokeStyle = getOutlineColor();
+			} else {
+				canvasContext.stroke();
+			}
         }
     }
-	
+
 };
 
 function getFillColor(){
@@ -194,14 +208,48 @@ function setHoverOutlineColor(c){
 	updateBoard();
 }
 
+function setCanvasBackground(c){
+	document.getElementById('board').style.background = '#' + c;
+}
+
 function setMode(m) {
-	if (m == mode) {
-		mode = '';
-		updateBoard();
-		return;
+
+	mode = m;
+	
+	switch (mode) {
+		case "neon":
+			setFillColor('00ff37');
+			setOutlineColor('00ff37');
+			setCanvasBackground('000000');
+			break;
+			
+		case "eraser":
+			setFillColor('ffffff');
+			setOutlineColor('000000');
+			setCanvasBackground('ffffff');
+			break;
+			
+		case "dark":
+			setFillColor('ffffff');
+			setOutlineColor('000000');
+			setCanvasBackground('000000');
+			break;
+			
+		case "drawer":
+			setFillColor('ffffff');
+			setOutlineColor('000000');
+			setCanvasBackground('ffffff');
+			break;
+			
+		case "":
+			setFillColor('000000');
+			setOutlineColor('000000');
+			setCanvasBackground('ffffff');
+			
+		default: 
+			break;
 	}
 	
-	mode = m;
 	updateBoard();
 }
 
@@ -213,6 +261,23 @@ function board(size) {
 function updateBoard(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	makeBoard(grid.length);
+}
+
+myVar = false;
+
+function intervalStart() {
+  clearInterval(myVar);
+  myVar = setInterval(step, stepSpeed);
+}
+
+function intervalEnd() {
+  clearInterval(myVar);
+  myVar = false;
+}
+
+var logArr = [50, 100, 150, 200, 250, 375, 500, 1000, 2000];
+function logslider(position) {
+  return logArr[position];
 }
 
 board(20);
