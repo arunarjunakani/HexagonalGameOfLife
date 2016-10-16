@@ -26,13 +26,13 @@
 					<script src="board.js"></script>
 
 					<div id="menu_bar">
-						<div class="button" onClick="running = setTimeout(step(), 2000)">
+						<div class="button" onClick="myVar = setInterval(step, 500)">
 							<p>
 								Play
 							</p>
 						</div>
 
-						<div class="button" onClick="clearTimeout(running)">
+						<div class="button" onClick="clearInterval(myVar)">
 							<p>
 								Stop
 							</p>
@@ -40,7 +40,7 @@
 
 						<div class="button" onClick="step();">
 							<p>
-								Call step()
+								Next Step
 							</p>
 						</div>
 
@@ -61,7 +61,7 @@
 								Size 3 (100)
 							</p>
 						</div>
-						
+
 						<div class="button" onClick="setFillColor('#ffffff');">
 							<p>
 								White
