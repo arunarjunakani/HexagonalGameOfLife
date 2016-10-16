@@ -64,6 +64,7 @@ var makeBoard = function(width) {
                 if (hexY >= 0 && hexY < boardHeight) {
                     grid[hexY][hexX].shouldSwap = true;
                     grid[hexY][hexX].doSwap();
+
                     ctx.fillStyle = "#000000";
                     drawBoard(ctx, boardWidth, boardHeight);
                 }
