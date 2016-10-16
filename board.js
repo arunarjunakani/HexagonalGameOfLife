@@ -318,5 +318,5 @@ board(20);
 
 $( document ).ready(function() {
     setMode('', true);
-	setHoverOutlineColor('00fff6');
+	setHoverOutlineColor('00fff6', true);
 });
