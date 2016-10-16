@@ -253,6 +253,13 @@ function setMode(m) {
 	updateBoard();
 }
 
+function updateSize(){
+	var d = document.getElementById("dropdown");
+	var value = d.options[d.selectedIndex].value;
+	
+	board(parseInt(value));
+}
+
 myVar = false;
 
 function board(size) {
