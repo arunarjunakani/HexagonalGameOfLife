@@ -1,4 +1,6 @@
 var hasAddListener = false;
+var clickListener = null;
+var mouseMoveListener = null;
 
 var makeBoard = function(width) {
     setSize(width);
@@ -32,13 +34,41 @@ var makeBoard = function(width) {
         ctx.lineWidth = 1;
 
         drawBoard(ctx, boardWidth, boardHeight);
+	    
 
-		//Event listeners
-        if (!hasAddListener) {
-            hasAddListener = true;
-            canvas.addEventListener("click", function(eventInfo) {
+	mouseMoveListener = function(eventInfo) {
+		var x,
+                    y,
+                    hexX,
+                    hexY,
+                    screenX,
+                    screenY;
 
-                var x,
+                x = eventInfo.offsetX || eventInfo.layerX;
+                y = eventInfo.offsetY || eventInfo.layerY;
+
+                hexY = Math.floor(y / (hexHeight + sideLength));
+                hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
+
+                screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
+                screenY = hexY * (hexHeight + sideLength);
+
+                // Clear the board
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+				
+				drawBoard(ctx, boardWidth, boardHeight);
+
+                // Check if the mouse's coords are on the board
+                if (hexX >= 0 && hexX < boardWidth) {
+                    if (hexY >= 0 && hexY < boardHeight) {
+                        ctx.strokeStyle = "#00fff6";
+                        drawHexagon(ctx, screenX, screenY, grid[hexX][hexY].isAlive);
+			ctx.strokeStyle = "#000000";
+                    }
+                }
+	}
+	clickListener = function() {
+		var x,
                     y,
                     hexX,
                     hexY,
@@ -66,39 +96,17 @@ var makeBoard = function(width) {
                         drawBoard(ctx, boardWidth, boardHeight);
                     }
                 }
+	}
+
+		//Event listeners
+        if (!hasAddListener) {
+            hasAddListener = true;
+            canvas.addEventListener("click", function(eventInfo) {
+		clickListener(eventInfo);
             });
 			
-			canvas.addEventListener("mousemove", function(eventInfo) {
-
-                var x,
-                    y,
-                    hexX,
-                    hexY,
-                    screenX,
-                    screenY;
-
-                x = eventInfo.offsetX || eventInfo.layerX;
-                y = eventInfo.offsetY || eventInfo.layerY;
-
-                hexY = Math.floor(y / (hexHeight + sideLength));
-                hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
-
-                screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
-                screenY = hexY * (hexHeight + sideLength);
-
-                // Clear the board
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-				
-				drawBoard(ctx, boardWidth, boardHeight);
-
-                // Check if the mouse's coords are on the board
-                if (hexX >= 0 && hexX < boardWidth) {
-                    if (hexY >= 0 && hexY < boardHeight) {
-                        ctx.strokeStyle = "#00fff6";
-                        drawHexagon(ctx, screenX, screenY, grid[hexX][hexY].isAlive);
-						ctx.strokeStyle = "#000000";
-                    }
-                }
+	canvas.addEventListener("mousemove", function(eventInfo) {
+		mouseMoveListener(eventInfo);
             });
         }
     }
