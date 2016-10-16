@@ -3,12 +3,12 @@ var grid = [];
 
 function step() {
   for (var row = 0; row < grid.length; row++) {
-    for(var col = 0; col < grid[i].length; col++) {
+    for(var col = 0; col < grid[row].length; col++) {
       grid[row][col].checkSwap();
     }
   }
   for (var row = 0; row < grid.length; row++) {
-    for(var col = 0; col < grid[i].length; col++) {
+    for(var col = 0; col < grid[row].length; col++) {
       grid[row][col].doSwap();
     }
   }
