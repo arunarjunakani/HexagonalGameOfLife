@@ -193,33 +193,33 @@ function getHoverOutlineColor(){
 	return hoverOutlineColor;
 }
 
-function setFillColor(c){
+function setFillColor(c, b){
 	fillColor = '#' + c;
 	updateBoard();
-	if(document.getElementById('cp-fill') != null) {
+	if(b && document.getElementById('cp-fill') != null) {
 		document.getElementById('cp-fill').jscolor.fromString(c);
 	}
 }
 
-function setOutlineColor(c){
+function setOutlineColor(c, b){
 	outlineColor = '#' + c;
 	updateBoard();
-	if(document.getElementById('cp-line') != null) {
+	if(b && document.getElementById('cp-line') != null) {
 		document.getElementById('cp-line').jscolor.fromString(c);
 	}
 }
 
-function setHoverOutlineColor(c){
+function setHoverOutlineColor(c, b){
 	hoverOutlineColor = '#' + c;
 	updateBoard();
-	if(document.getElementById('cp-hover') != null) {
+	if(b && document.getElementById('cp-hover') != null) {
 		document.getElementById('cp-hover').jscolor.fromString(c);
 	}
 }
 
-function setCanvasBackground(c){
+function setCanvasBackground(c, b){
 	document.getElementById('board').style.background = '#' + c;
-	if(document.getElementById('cp-bg') != null) {
+	if(b && document.getElementById('cp-bg') != null) {
 		document.getElementById('cp-bg').jscolor.fromString(c);
 	}
 }
@@ -230,33 +230,33 @@ function setMode(m) {
 	
 	switch (mode) {
 		case "neon":
-			setFillColor('00ff37');
-			setOutlineColor('00ff37');
-			setCanvasBackground('000000');
+			setFillColor('00ff37', true);
+			setOutlineColor('00ff37', true);
+			setCanvasBackground('000000', true);
 			break;
 			
 		case "eraser":
-			setFillColor('ffffff');
-			setOutlineColor('000000');
-			setCanvasBackground('ffffff');
+			setFillColor('ffffff', true);
+			setOutlineColor('000000', true);
+			setCanvasBackground('ffffff', true);
 			break;
 			
 		case "dark":
-			setFillColor('ffffff');
-			setOutlineColor('000000');
-			setCanvasBackground('000000');
+			setFillColor('ffffff', true);
+			setOutlineColor('000000', true);
+			setCanvasBackground('000000', true);
 			break;
 			
 		case "drawer":
-			setFillColor('000000');
-			setOutlineColor('ffffff');
-			setCanvasBackground('ffffff');
+			setFillColor('000000', true);
+			setOutlineColor('ffffff', true);
+			setCanvasBackground('ffffff', true);
 			break;
 			
 		case "":
-			setFillColor('000000');
-			setOutlineColor('000000');
-			setCanvasBackground('ffffff');
+			setFillColor('000000', true);
+			setOutlineColor('000000', true);
+			setCanvasBackground('ffffff', true);
 			
 		default: 
 			break;
@@ -317,6 +317,6 @@ function logslider(position) {
 board(20);
 
 $( document ).ready(function() {
-    setMode('');
+    setMode('', true);
 	setHoverOutlineColor('00fff6');
 });
