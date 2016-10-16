@@ -104,13 +104,13 @@ var makeBoard = function(width) {
 						ctx.strokeStyle = getOutlineColor();
                     }
                 }
-				
+
 	}
 
 		//Event listeners
         if (!hasAddListener) {
             hasAddListener = true;
-			
+
             canvas.addEventListener("click", function(eventInfo) {
 				clickListener(eventInfo);
             });
@@ -149,7 +149,7 @@ var makeBoard = function(width) {
         canvasContext.closePath();
 
         if (fill) {
-			
+
 			switch (mode) {
 				case "rainbow":
 					canvasContext.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
@@ -157,14 +157,14 @@ var makeBoard = function(width) {
 				default:
 					break;
 			}
-			
+
             canvasContext.fill();
 			canvasContext.stroke();
         } else {
             canvasContext.stroke();
         }
     }
-	
+
 };
 
 function getFillColor(){
@@ -200,7 +200,7 @@ function setMode(m) {
 		updateBoard();
 		return;
 	}
-	
+
 	mode = m;
 	updateBoard();
 }
@@ -213,6 +213,24 @@ function board(size) {
 function updateBoard(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	makeBoard(grid.length);
+}
+
+myVar = false;
+
+function intervalStart() {
+  clearInterval(myVar);
+  myVar = setInterval(step, stepSpeed);
+}
+
+function intervalEnd() {
+  clearInterval(myVar);
+  myVar = false;
+}
+
+function logslider(position) {
+  var arr = [50, 100, 150, 200, 250, 375, 500, 1000, 2000];
+
+  return arr[position];
 }
 
 board(20);

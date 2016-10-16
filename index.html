@@ -11,7 +11,9 @@
 
 		<script type=>
 			$(document).on('input', 'input[type="range"]', function(e) {
-				stepSpeed = e.currentTarget.value;
+				stepSpeed = logslider(e.currentTarget.value);
+				intervalStart();
+				clearInterval();
 			});
 		</script>
 	</head>
@@ -36,13 +38,13 @@
 					<script src="board.js"></script>
 
 					<div id="menu_bar">
-						<div class="button" onClick="myVar = setInterval(step, stepSpeed);">
+						<div class="button" onClick="intervalStart();">
 							<p>
 								Play
 							</p>
 						</div>
 
-						<div class="button" onClick="clearInterval(myVar);">
+						<div class="button" onClick="intervalEnd();">
 							<p>
 								Stop
 							</p>
@@ -50,10 +52,10 @@
 
 						<input
 						    type="range"
-						    min="10"
-						    max="1000"
-						    step="10"
-						    value="300"
+						    min="0"
+						    max="8"
+						    step="1"
+						    value="6"
 						    data-orientation="horizontal"
 						>
 
