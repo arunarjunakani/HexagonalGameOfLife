@@ -9,6 +9,7 @@ This is a project for Hello World 2016, Purdue's Freshman Hackathon. This is a s
 * HTML - Markup Language
 * CSS - Style Sheet Language
 * [JavaScript](https://www.javascript.com/) - Programming Language
+* [Inkscape](https://inkscape.org/en/) - Icon creation
 
 ## Authors
 
