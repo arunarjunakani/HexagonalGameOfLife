@@ -30,4 +30,4 @@ This is a project for Hello World 2016, Purdue's Freshman Hackathon. This is a s
 
 ## Final Note
 
-This was our first hackaton and it was plain awesome. We learned a bunch and put in long hours to create this project. We are so happy to show off our project and we hope that we can continue making such cool stuff in the future.
+This was our first hackathon and it was plain awesome. We learned a bunch and put in long hours to create this project. We are so happy to show off our project and we hope that we can continue making such cool stuff in the future.
