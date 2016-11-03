@@ -21,7 +21,7 @@ Website: https://arunarjunakani.github.io/HexagonalGameOfLife/
 
 * John Horton Conway for creating "Conway's Game of Life"
 * Hexagons for making simple things much more interesting
-* zackthehuman [link](https://gist.github.com/zackthehuman/1867663) for the hexagons canvas drawing
+*  [zackthehuman](https://gist.github.com/zackthehuman/1867663) for the hexagons canvas drawing
 
 ## Libraries used
 * [jQuery](https://jquery.com/)
